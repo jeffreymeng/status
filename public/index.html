@@ -46,7 +46,7 @@
 	<script>
 		/* global jquery $ */
 		// .github-basic-load
-		jquery.ajax({
+		jQuery.ajax({
 			url: "https://status.github.com/api/status.json",
 			success: function(data) {
 				var status = json.parse(data).status;
@@ -61,7 +61,7 @@
 			}
 		});
 		// .github-lhm-load
-		jquery.ajax({
+		jQuery.ajax({
 			url: "https://status.github.com/api/last-message.json",
 			success: function(data) {
 				var status = json.parse(data);
