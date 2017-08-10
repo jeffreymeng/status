@@ -44,10 +44,10 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script>
-		/* global jquery $ */
+		/* global jQuery moment $ */
 		// .github-basic-load
 		jQuery.ajax({
-			method:"get",
+			method:"GET",
 			url: "https://status.github.com/api/status.json",
 			success: function(data) {
 				var status = JSON.parse(data).status;
@@ -63,10 +63,10 @@
 		});
 		// .github-lhm-load
 		jQuery.ajax({
-			method:"get",
+			method:"GET",
 			url: "https://status.github.com/api/last-message.json",
 			success: function(data) {
-				var status = JSON.parse(data);
+				
 				
 					$("#github-hosting-lhm").html(data.body);
 					$("#github-hosting-lhm-status").html("good");
