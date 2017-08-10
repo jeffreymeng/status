@@ -62,6 +62,7 @@
 		});
 		// .github-lhm-load
 		jQuery.ajax({
+			type:"get",
 			url: "https://status.github.com/api/last-message.json",
 			success: function(data) {
 				var status = json.parse(data);
