@@ -47,9 +47,10 @@
 		/* global jquery $ */
 		// .github-basic-load
 		jQuery.ajax({
+			method:"get",
 			url: "https://status.github.com/api/status.json",
 			success: function(data) {
-				var status = json.parse(data).status;
+				var status = JSON.parse(data).status;
 				if (status === "good") {
 					$("#github-hosting-status").html("good");
 					$("#github-hosting-status-last-updated").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
@@ -62,10 +63,10 @@
 		});
 		// .github-lhm-load
 		jQuery.ajax({
-			type:"get",
+			method:"get",
 			url: "https://status.github.com/api/last-message.json",
 			success: function(data) {
-				var status = json.parse(data);
+				var status = JSON.parse(data);
 				
 					$("#github-hosting-lhm").html(data.body);
 					$("#github-hosting-lhm-status").html("good");
