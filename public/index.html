@@ -26,9 +26,9 @@
 				<div class="well">
 					Link to status page:<a href="https://status.github.com">https://status.github.com</a>
 					<br> Last updated:<span id="github-hosting-status-last-updated" class="github-basic-load">Loading...</span><br>
-					<br> Last human message:<span id="github-hosting-status-lhm" class="github-lhm-load">Loading...</span><br> Status as of last human message:<span id="github-hosting-status-lhm-status" class="github-lhm-load">Loading...</span><br> Time as of last human
-					message:
-					<span id="github-hosting-status-lhm-time" class="github-lhm-load">Loading...</span><br>
+					<br> Last human message:<span id="github-hosting-lhm" class="github-lhm-load">Loading...</span><br> 
+					Status as of last human message:<span id="github-hosting-lhm-status" class="github-lhm-load">Loading...</span><br>
+					Time as of last human message: <span id="github-hosting-lhm-time" class="github-lhm-load">Loading...</span><br>
 				</div>
 			</div>
 
@@ -54,7 +54,7 @@
 		// .github-basic-load
 
 		function basicStatusSuccess(data) {
-			//window.bssDone = true;
+			window.bssDone = true;
 			var status = data.status;
 			if (status === "good") {
 				$("#github-hosting-status").html("good");
@@ -68,7 +68,7 @@
 		// .github-lhm-load
 
 		function lhmSuccess(data) {
-			//window.lhmDone = true;
+			window.lhmDone = true;
 			console.log(data);
 			$("#github-hosting-lhm").html(data.body);
 			$("#github-hosting-lhm-status").html(data.status);
