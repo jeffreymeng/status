@@ -48,8 +48,7 @@
 		// .github-basic-load
 		jQuery.ajax({
 			method:"GET",
-			//url: "https://status.github.com/api/status.json",
-			url:"https://api.github.com/",
+			url: "https://status.github.com/api/status.json",
 			success: function(data) {
 				var status = JSON.parse(data).status;
 				if (status === "good") {
