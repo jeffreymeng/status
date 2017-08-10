@@ -59,6 +59,12 @@
 			if (status === "good") {
 				$("#github-hosting-status").html("good");
 				$("#github-hosting-status-last-updated").html(moment(data.last_updated).format('MMMM Do YYYY, h:mm:ss a'));
+			} else if (status === "minor") {
+				$("#github-hosting-status").html("Minor issue(may not affect this website)");
+				$("#github-hosting-status-last-updated").html(moment(data.last_updated).format('MMMM Do YYYY, h:mm:ss a'));
+			} else if (status === "major") {
+				$("#github-hosting-status").html("Major issue(may not affect this website)");
+				$("#github-hosting-status-last-updated").html(moment(data.last_updated).format('MMMM Do YYYY, h:mm:ss a'));
 			}
 
 		}
