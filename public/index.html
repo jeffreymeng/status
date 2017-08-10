@@ -54,13 +54,11 @@
 		// .github-basic-load
 
 		function basicStatusSuccess(data) {
-			console.log(data)
-			console.log( JSON.parse(data))
 			window.bssDone = true;
-			var status = JSON.parse(data).status;
+			var status = data.status;
 			if (status === "good") {
 				$("#github-hosting-status").html("good");
-				$("#github-hosting-status-last-updated").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
+				$("#github-hosting-status-last-updated").html(moment(data.last_updated).format('MMMM Do YYYY, h:mm:ss a'));
 			}
 
 		}
@@ -74,7 +72,7 @@
 
 			$("#github-hosting-lhm").html(data.body);
 			$("#github-hosting-lhm-status").html("good");
-			$("#github-hosting-status-lhm-time").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
+			$("#github-hosting-status-lhm-time").html(moment(data.last_updated).format('MMMM Do YYYY, h:mm:ss a'));
 
 
 		}
