@@ -17,22 +17,20 @@
 			<p class="text-muted">Check the status of all Jeffrey projects.</p>
 			<hr>
 			<p><b>Github hosting status</b>: <span id="github-hosting-status" class="github-basic-load">Loading...</span>
-			<a data-toggle="collapse" href="#github-hosting-status-more" aria-expanded="false" aria-controls="github-hosting-status-more">
+				<a data-toggle="collapse" href="#github-hosting-status-more" aria-expanded="false" aria-controls="github-hosting-status-more">
   More
 </a></p>
-			
 
-<div class="collapse" id="github-hosting-status-more">
-  <div class="well">
-  	Link to status page:<a href="https://status.github.com">https://status.github.com</a>
-  	<br>
-    Last updated:<span id="github-hosting-status-last-updated" class="github-basic-load">Loading...</span><br>
-    <br>
-    Last human message:<span id="github-hosting-status-lhm" class="github-lhm-load">Loading...</span><br>
-    Status as of last human message:<span id="github-hosting-status-lhm-status" class="github-lhm-load">Loading...</span><br>
-   	Time as of last human message:<span id="github-hosting-status-lhm-time" class="github-lhm-load">Loading...</span><br>
-  </div>
-</div>
+
+			<div class="collapse" id="github-hosting-status-more">
+				<div class="well">
+					Link to status page:<a href="https://status.github.com">https://status.github.com</a>
+					<br> Last updated:<span id="github-hosting-status-last-updated" class="github-basic-load">Loading...</span><br>
+					<br> Last human message:<span id="github-hosting-status-lhm" class="github-lhm-load">Loading...</span><br> Status as of last human message:<span id="github-hosting-status-lhm-status" class="github-lhm-load">Loading...</span><br> Time as of last human
+					message:
+					<span id="github-hosting-status-lhm-time" class="github-lhm-load">Loading...</span><br>
+				</div>
+			</div>
 
 
 
@@ -41,43 +39,45 @@
 	<script src="https://assets.jeffkmeng.com/jquery/2.2.4/js/jquery.min.js"></script>
 
 	<script src="https://assets.jeffkmeng.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://status.github.com/api/status.json?callback=basicStatusSuccess"></script>
+
+	<script src="https://status.github.com/api/last-message.json?callback=lhmSuccess"></script>
+
+
 	<script>
 		/* global jQuery moment $ */
 		// .github-basic-load
-		jQuery.ajax({
-			method:"GET",
-			url: "https://status.github.com/api/status.json",
-			success: function(data) {
-				var status = JSON.parse(data).status;
-				if (status === "good") {
-					$("#github-hosting-status").html("good");
-					$("#github-hosting-status-last-updated").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
-				}
 
-			},
-			error: function() {
-				$(".github-basic-load").html("Unable to load");
+		function basicStatusSuccess(data) {
+			window.bssDone = true;
+			var status = JSON.parse(data).status;
+			if (status === "good") {
+				$("#github-hosting-status").html("good");
+				$("#github-hosting-status-last-updated").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
 			}
-		});
+
+		}
+
+
+
 		// .github-lhm-load
-		jQuery.ajax({
-			method:"GET",
-			url: "https://status.github.com/api/last-message.json",
-			success: function(data) {
-				
-				
-					$("#github-hosting-lhm").html(data.body);
-					$("#github-hosting-lhm-status").html("good");
-					$("#github-hosting-status-lhm-time").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
-				
 
-			},
-			error: function() {
-				$('.github-lhm-load').html("Unable to load");
-			}
-		});
+		function lhmSuccess(data) {
+			window.lhmDone = true;
+
+			$("#github-hosting-lhm").html(data.body);
+			$("#github-hosting-lhm-status").html("good");
+			$("#github-hosting-status-lhm-time").html(moment(JSON.parse(data).last_updated).format('MMMM Do YYYY, h:mm:ss a'));
+
+
+		}
+
+		setTimeout(function() {
+			if (window.lhmDone !== true) $('.github-lhm-load').html("Unable to load");
+			if (window.bssDone !== true) $(".github-basic-load").html("Unable to load");
+		}, 3000);
 	</script>
 </body>
 
