@@ -41,13 +41,12 @@
 	<script src="https://assets.jeffkmeng.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script src="https://status.github.com/api/status.json?callback=basicStatusSuccess"></script>
-
-	<script src="https://status.github.com/api/last-message.json?callback=lhmSuccess"></script>
+	
 
 
 	<script>
 		/* global jQuery moment $ */
+		//GITHUB PAGES ONLY IN THIS TAG
 		// .github-basic-load
 
 		function basicStatusSuccess(data) {
@@ -78,6 +77,13 @@
 			if (window.lhmDone !== true) $('.github-lhm-load').html("Unable to load");
 			if (window.bssDone !== true) $(".github-basic-load").html("Unable to load");
 		}, 3000);
+	</script>
+	<script src="https://status.github.com/api/status.json?callback=basicStatusSuccess"></script>
+
+	<script src="https://status.github.com/api/last-message.json?callback=lhmSuccess"></script>
+	<script>
+		/* global jQuery moment $ */
+		
 	</script>
 </body>
 
